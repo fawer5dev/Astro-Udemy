@@ -20,12 +20,13 @@ const { name } = Astro.params;
 const { url } = Astro.props;
 const id = url.split("/").at(-2);
 const audioSrc = `https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/${id}.ogg`;
+const page = Math.ceil(Number(id) / 20);
 ---
 
 <MainLayout title="Algun pokemon">
   <section class="mt-10 mx-10 flex flex-col justify-center items-center">
     <div>
-      <a href="/">Regresar</a>
+      <a href={`/pokemons/${page}`}>Regresar</a>
       <h1 class="text-5xl capitalize">{name}</h1>
     </div>
     <PokemonCard name={name} url={url} isBig />
