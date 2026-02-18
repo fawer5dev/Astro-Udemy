@@ -26,12 +26,12 @@ const page = Math.ceil(Number(id) / 20);
 
 <MainLayout
   title={`Pokemon - #${id} ${name}`}
-  description={`Información del pokemon ${name}`}
+  description={`Pokemon Data ${name}`}
   image={imgScr}
 >
   <section class="mt-10 mx-10 flex flex-col justify-center items-center">
     <div>
-      <a href={`/pokemons/${page}`}>Regresar</a>
+      <a href={`/pokemons/${page}`}>Go back</a>
       <h1 class="text-5xl capitalize">{name}</h1>
     </div>
     <PokemonCard name={name} url={url} isBig />

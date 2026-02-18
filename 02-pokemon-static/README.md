@@ -1,18 +1,32 @@
 # Pokemon Static
 
-A statically generated Pokemon website built with **Astro** and **Tailwind CSS v4**. It fetches data from the [PokeAPI](https://pokeapi.co/) at build time and generates static pages for the first 151 Pokemon, including paginated lists, individual detail pages with official artwork, and audio cries.
+A statically generated Pokémon website built with **Astro** and **Tailwind CSS v4**.  
+It consumes data from [PokeAPI](https://pokeapi.co/) at build time and generates pages for the first 151 Pokémon, including paginated listing pages and individual detail pages with official artwork and audio cries.
+
+## Last Updates
+
+- **Root redirect configured** — `http://localhost:4321/` now redirects to `/pokemons/1` via `astro.config.mjs`.
+- Added and standardized detail navigation through **`/pokemon/[id]`**.
+- Kept static generation for **151 Pokémon** using `getStaticPaths`.
+- Pagination remains at **20 Pokémon per page** under **`/pokemons/[page]`**.
+- Included a custom **404 page** with a quick link to **`/pokemons/1`**.
+- `MainLayout` now centralizes SEO/Open Graph metadata and Astro View Transitions.
 
 ## About the Project
 
 This project was built as part of an Astro course and demonstrates:
 
-- **Static Site Generation (SSG)** — All pages are pre-rendered at build time using `getStaticPaths`, resulting in fast load times and zero client-side API calls.
-- **PokeAPI Integration** — Fetches Pokemon data (names, sprites, cries) from the public PokeAPI.
-- **Pagination** — The Pokemon list is paginated (20 per page) with previous/next navigation.
-- **Dynamic Routes** — Individual Pokemon pages are generated using `[name].astro` and `[page].astro` dynamic routes.
-- **SEO & Open Graph Metadata** — Each page includes `title`, `description`, and `og:image` meta tags.
-- **Tailwind CSS v4** — Styled with utility-first CSS using the latest Tailwind CSS integrated via its Vite plugin.
-- **View Transitions** — Smooth page transitions powered by Astro's built-in `ViewTransitions`.
+- **Static Site Generation (SSG)** — Pages are pre-rendered at build time.
+- **PokeAPI Integration** — Pokémon names and URLs are fetched from PokeAPI.
+- **Pagination** — Static list pages with previous/next navigation.
+- **Root Redirect** — The homepage (`/`) automatically redirects to `/pokemons/1` to show the first page of Pokémon.
+- **Dynamic Routes** — Generated routes for:
+  - `pokemon/[id].astro` (detail by ID, currently used by cards)
+  - `pokemons/[name].astro` (detail by name)
+  - `pokemons/[page].astro` (paginated listing)
+- **SEO & Open Graph Metadata** — `title`, `description`, and `og:image` via `MainLayout`.
+- **Tailwind CSS v4** — Styling via Tailwind + Vite plugin.
+- **View Transitions** — Astro built-in transitions for smoother navigation.
 
 ## Project Structure
 
@@ -20,80 +34,29 @@ This project was built as part of an Astro course and demonstrates:
 /
 ├── public/                          # Static assets
 ├── src/
+│   ├── assets/
 │   ├── components/
-│   │   ├── Welcome.astro            # Welcome component
+│   │   ├── Welcome.astro
 │   │   └── pokemons/
-│   │       └── PokemonCard.astro    # Reusable Pokemon card component
+│   │       └── PokemonCard.astro    # Reusable Pokemon card (links to /pokemon/[id])
 │   ├── consts/
-│   │   └── site-info.ts             # Global site metadata constants
+│   │   └── site-info.ts
 │   ├── interfaces/
-│   │   └── pokemon-list.response.ts # TypeScript interface for PokeAPI response
+│   │   └── pokemon-list.response.ts
 │   ├── layouts/
-│   │   ├── Layout.astro             # Base layout
-│   │   └── MainLayout.astro         # Main layout with SEO meta tags
+│   │   ├── Layout.astro
+│   │   └── MainLayout.astro
 │   ├── pages/
-│   │   ├── index.astro              # Home page (first 20 Pokemon)
+│   │   ├── 404.astro                # Custom 404 page
+│   │   ├── index.astro              # Redirects to /pokemons/1
 │   │   ├── pokemon/
-│   │   │   └── [id].astro           # Pokemon detail page by ID
+│   │   │   └── [id].astro           # Pokemon detail by ID
 │   │   └── pokemons/
-│   │       ├── [name].astro         # Pokemon detail page by name
-│   │       └── [page].astro         # Paginated Pokemon list
+│   │       ├── [name].astro         # Pokemon detail by name
+│   │       └── [page].astro         # Paginated list (20 per page)
 │   └── styles/
-│       └── global.css               # Global styles
-├── astro.config.mjs                 # Astro configuration
+│       └── global.css
+├── astro.config.mjs                 # Root redirect configured here
 ├── package.json
+├── pnpm-lock.yaml
 └── tsconfig.json
-```
-
-## Getting Started
-
-### Prerequisites
-
-- [Node.js](https://nodejs.org/) (v18 or higher)
-- [pnpm](https://pnpm.io/) package manager
-
-### Installation
-
-1. Clone the repository:
-
-   ```sh
-   git clone <repository-url>
-   cd 02-pokemon-static
-   ```
-
-2. Install dependencies:
-
-   ```sh
-   pnpm install
-   ```
-
-3. Start the development server:
-
-   ```sh
-   pnpm dev
-   ```
-
-4. Open your browser at [http://localhost:4321](http://localhost:4321)
-
-## Commands
-
-All commands are run from the root of the project:
-
-| Command             | Action                                       |
-| :------------------ | :------------------------------------------- |
-| `pnpm install`      | Install dependencies                         |
-| `pnpm dev`          | Start dev server at `localhost:4321`          |
-| `pnpm build`        | Build the production site to `./dist/`        |
-| `pnpm preview`      | Preview the production build locally          |
-| `pnpm astro ...`    | Run Astro CLI commands (e.g. `astro check`)   |
-
-## Tech Stack
-
-- [Astro](https://astro.build/) v5 — Static site framework
-- [Tailwind CSS](https://tailwindcss.com/) v4 — Utility-first CSS
-- [PokeAPI](https://pokeapi.co/) — Pokemon data source
-- [TypeScript](https://www.typescriptlang.org/) — Type safety
-
-## Summary
-
-**Pokemon Static** is a fully static website that showcases the original 151 Pokemon. Every page is generated at build time, making the site extremely fast with no runtime API dependencies. Users can browse Pokemon through a paginated list, view detailed information for each Pokemon (including official artwork and audio cries), and navigate seamlessly with smooth view transitions.

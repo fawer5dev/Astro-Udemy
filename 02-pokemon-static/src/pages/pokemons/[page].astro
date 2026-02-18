@@ -28,10 +28,6 @@ import "@styles/global.css";
   </section>
 
   <section class="flex mt-10 gap-2 items-center">
-    
-    <!-- <a class="btn" href={page.url.prev}>Anteriores</a>
-    <a class="btn" href={page.url.next}>Siguientes</a>-->
-
     <a
       class:list={[
         "btn",
@@ -40,7 +36,7 @@ import "@styles/global.css";
         },
       ]}
       href={page.url.prev}
-      >Anteriores
+      >Previous
     </a>
     <a
       class:list={[
@@ -50,11 +46,11 @@ import "@styles/global.css";
         },
       ]}
       href={page.url.next}
-      >Siguientes
+      >Next
     </a>
 
     <div class="flex flex-1"></div>
-    <span class="text-xl font-bold">Pagina {page.currentPage}</span>
+    <span class="text-xl font-bold">Page {page.currentPage}</span>
   </section>
 </MainLayout>
 
