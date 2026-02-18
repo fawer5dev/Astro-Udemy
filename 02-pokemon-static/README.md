@@ -1,48 +1,99 @@
-# Astro Starter Kit: Basics
+# Pokemon Static
 
-```sh
-pnpm create astro@latest -- --template basics
-```
+A statically generated Pokemon website built with **Astro** and **Tailwind CSS v4**. It fetches data from the [PokeAPI](https://pokeapi.co/) at build time and generates static pages for the first 151 Pokemon, including paginated lists, individual detail pages with official artwork, and audio cries.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+## About the Project
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+This project was built as part of an Astro course and demonstrates:
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+- **Static Site Generation (SSG)** — All pages are pre-rendered at build time using `getStaticPaths`, resulting in fast load times and zero client-side API calls.
+- **PokeAPI Integration** — Fetches Pokemon data (names, sprites, cries) from the public PokeAPI.
+- **Pagination** — The Pokemon list is paginated (20 per page) with previous/next navigation.
+- **Dynamic Routes** — Individual Pokemon pages are generated using `[name].astro` and `[page].astro` dynamic routes.
+- **SEO & Open Graph Metadata** — Each page includes `title`, `description`, and `og:image` meta tags.
+- **Tailwind CSS v4** — Styled with utility-first CSS using the latest Tailwind CSS integrated via its Vite plugin.
+- **View Transitions** — Smooth page transitions powered by Astro's built-in `ViewTransitions`.
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
+## Project Structure
 
 ```text
 /
-├── public/
-│   └── favicon.svg
+├── public/                          # Static assets
 ├── src/
+│   ├── components/
+│   │   ├── Welcome.astro            # Welcome component
+│   │   └── pokemons/
+│   │       └── PokemonCard.astro    # Reusable Pokemon card component
+│   ├── consts/
+│   │   └── site-info.ts             # Global site metadata constants
+│   ├── interfaces/
+│   │   └── pokemon-list.response.ts # TypeScript interface for PokeAPI response
 │   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
+│   │   ├── Layout.astro             # Base layout
+│   │   └── MainLayout.astro         # Main layout with SEO meta tags
+│   ├── pages/
+│   │   ├── index.astro              # Home page (first 20 Pokemon)
+│   │   ├── pokemon/
+│   │   │   └── [id].astro           # Pokemon detail page by ID
+│   │   └── pokemons/
+│   │       ├── [name].astro         # Pokemon detail page by name
+│   │       └── [page].astro         # Paginated Pokemon list
+│   └── styles/
+│       └── global.css               # Global styles
+├── astro.config.mjs                 # Astro configuration
+├── package.json
+└── tsconfig.json
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## Getting Started
 
-## 🧞 Commands
+### Prerequisites
 
-All commands are run from the root of the project, from a terminal:
+- [Node.js](https://nodejs.org/) (v18 or higher)
+- [pnpm](https://pnpm.io/) package manager
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
+### Installation
 
-## 👀 Want to learn more?
+1. Clone the repository:
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+   ```sh
+   git clone <repository-url>
+   cd 02-pokemon-static
+   ```
+
+2. Install dependencies:
+
+   ```sh
+   pnpm install
+   ```
+
+3. Start the development server:
+
+   ```sh
+   pnpm dev
+   ```
+
+4. Open your browser at [http://localhost:4321](http://localhost:4321)
+
+## Commands
+
+All commands are run from the root of the project:
+
+| Command             | Action                                       |
+| :------------------ | :------------------------------------------- |
+| `pnpm install`      | Install dependencies                         |
+| `pnpm dev`          | Start dev server at `localhost:4321`          |
+| `pnpm build`        | Build the production site to `./dist/`        |
+| `pnpm preview`      | Preview the production build locally          |
+| `pnpm astro ...`    | Run Astro CLI commands (e.g. `astro check`)   |
+
+## Tech Stack
+
+- [Astro](https://astro.build/) v5 — Static site framework
+- [Tailwind CSS](https://tailwindcss.com/) v4 — Utility-first CSS
+- [PokeAPI](https://pokeapi.co/) — Pokemon data source
+- [TypeScript](https://www.typescriptlang.org/) — Type safety
+
+## Summary
+
+**Pokemon Static** is a fully static website that showcases the original 151 Pokemon. Every page is generated at build time, making the site extremely fast with no runtime API dependencies. Users can browse Pokemon through a paginated list, view detailed information for each Pokemon (including official artwork and audio cries), and navigate seamlessly with smooth view transitions.

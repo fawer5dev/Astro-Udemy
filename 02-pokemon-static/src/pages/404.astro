@@ -1,0 +1,23 @@
+---
+import MainLayout from "@layouts/MainLayout.astro";
+import "@styles/global.css";
+---
+
+<MainLayout title="404 | Page Not Found">
+  <main>
+    <h1 class="text-3xl">404: Page Not Found</h1>
+    <p>Sorry, the page you are looking for does not exist.</p>
+    <a href="/pokemons/1">Go to the home page</a>
+  </main>
+</MainLayout>
+
+<style>
+  main {
+    text-align: center;
+    padding: 4rem 0;
+  }
+  h1 {
+    font-size: 3rem;
+    color: #ff0000;
+  }
+</style>
