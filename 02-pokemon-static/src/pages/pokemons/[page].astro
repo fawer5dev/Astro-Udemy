@@ -11,7 +11,7 @@ export const getStaticPaths = (async ({ paginate }) => {
   return paginate(results, { pageSize: 20 });
 }) satisfies GetStaticPaths;
 
-const title = "Pokemon Static";
+const title = "Pokemon Ball";
 const { page } = Astro.props;
 import "@styles/global.css";
 ---

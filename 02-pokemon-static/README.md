@@ -3,14 +3,6 @@
 A statically generated Pokémon website built with **Astro** and **Tailwind CSS v4**.  
 It consumes data from [PokeAPI](https://pokeapi.co/) at build time and generates pages for the first 151 Pokémon, including paginated listing pages and individual detail pages with official artwork and audio cries.
 
-## Last Updates
-
-- **Root redirect configured** — `http://localhost:4321/` now redirects to `/pokemons/1` via `astro.config.mjs`.
-- Added and standardized detail navigation through **`/pokemon/[id]`**.
-- Kept static generation for **151 Pokémon** using `getStaticPaths`.
-- Pagination remains at **20 Pokémon per page** under **`/pokemons/[page]`**.
-- Included a custom **404 page** with a quick link to **`/pokemons/1`**.
-- `MainLayout` now centralizes SEO/Open Graph metadata and Astro View Transitions.
 
 ## About the Project
 
